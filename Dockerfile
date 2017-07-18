@@ -26,5 +26,8 @@ RUN service mysql start; mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY
 # Allow ports
 EXPOSE 80 3306
 
+# VOLUME
+VOLUME /var/www/html/
+
 # Start supervisor
 CMD ["supervisord"]
