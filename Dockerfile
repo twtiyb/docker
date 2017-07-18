@@ -16,10 +16,7 @@ RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf
 # Include supervisor configuration
 ADD supervisor-lamp.conf /etc/supervisor/conf.d/
 ADD supervisord.conf /etc/supervisor/
-
-# Include PHP Info page
-ADD index.php /var/www/html/index.php
-
+ 
 # Create new MySQL admin user
 RUN service mysql start; mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'pass';";mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;"; 
 
