@@ -1,5 +1,5 @@
 FROM linuxconfig/apache
-MAINTAINER Lubos Rendek <web@linuxconfig.org>
+MAINTAINER twtiy <twtiyb@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
