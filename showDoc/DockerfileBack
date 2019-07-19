@@ -1,0 +1,25 @@
+FROM php:7.2.8-apache-stretch
+MAINTAINER twtiy <twtiyb@gmail.com>
+
+ENV DEBIAN_FRONTEND noninteractive
+
+# Main package installation
+RUN apt-get -y install curl
+RUN curl -o /etc/apt/sources.list https://gitee.com/twtiyb/pac/raw/master/debian_sources.list
+RUN apt-get update
+RUN apt-get -y install supervisor git
+
+# get lastest showDoc
+RUN git clone https://github.com/star7th/showdoc.git /var/www/html/
+
+# Include supervisor configuration
+ADD supervisor-lamp.conf /etc/supervisor/conf.d/
+ADD supervisord.conf /etc/supervisor/
+
+# Allow ports
+EXPOSE 80
+
+RUN chmod -R 777 /var/www/html/
+
+# Start supervisor
+CMD ["supervisord"]
